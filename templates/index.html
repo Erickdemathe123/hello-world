@@ -26,7 +26,7 @@
     <h1>Selecione um idioma</h1>
 
     <form method="post">
-        <select name="language">
+        <select name="language" id="languageSelect" onchange="updateButtonText()">
             <option value="pt">Português</option>
             <option value="en">Inglês</option>
             <option value="es">Espanhol</option>
@@ -38,9 +38,32 @@
             <option value="zh">Chinês</option>
         </select>
 
-        <button type="submit">Mostrar Saudação</button>
+        <button type="submit" id="submitButton">Mostrar Saudação</button>
     </form>
 
     <p id="output">{{ greeting }}</p>
+
+    <script>
+        function updateButtonText() {
+            var language = document.getElementById("languageSelect").value;
+            var button = document.getElementById("submitButton");
+
+            // Mapeamento das traduções do texto do botão
+            var buttonTexts = {
+                pt: "Mostrar Saudação",
+                en: "Show Greeting",
+                es: "Mostrar Saludo",
+                fr: "Afficher la Salutation",
+                de: "Begrüßung Anzeigen",
+                it: "Mostra Saluto",
+                jp: "挨拶を表示",
+                ru: "Показать Приветствие",
+                zh: "显示问候"
+            };
+
+            // Atualizando o texto do botão com base no idioma selecionado
+            button.textContent = buttonTexts[language];
+        }
+    </script>
 </body>
 </html>
